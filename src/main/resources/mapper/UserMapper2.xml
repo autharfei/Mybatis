@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.qf.fei.mapper.UserMapper2">
+    <resultMap id="BaseResultMap" type="com.qf.fei.entity.User2">
+    <id property="Id" column="u_id"/>
+    <result property="Name" column="u_name"/>
+    <result property="Phone" column="u_phone"/>
+    <result property="Address" column="u_address"/>
+    <result property="Detail" column="u_detail"/>
+</resultMap>
+
+ <resultMap id="CollectionResultMap" type="com.qf.fei.entity.User2" extends="BaseResultMap">
+        <!--        <result column="no" property="orderNo"/>-->
+        <collection property="gowRegions" resultMap="com.qf.fei.mapper.UserGowMapper.BaseResultMap"/>
+    </resultMap>
+<select id="selectById" resultMap="CollectionResultMap">
+select *
+        from user2 u left  join  gow_region gr on u.u_address = gr.region_name
+        where u.u_id = #{Id}
+</select>
+
+
+
+
+    
+</mapper>
+    
