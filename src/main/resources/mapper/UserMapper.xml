@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.fei.mapper.UserMapper">
+
+<resultMap id="BaseResultMapper" type="com.qf.fei.entity.User">
+
+<!--数据库的id对应实体类的id-->
+<id column="user_id" property="userId"/>
+
+<!--数据库的其他普通字段对应实体类的字段-->
+<result column="username" property="username"/>
+<result column="password" property="password"/>
+<result column="status" property="status"/>
+
+</resultMap>
+
+<insert id="insert">
+    insert into user(username,password)
+    values (#{user.username},#{user.password})
+</insert>
+</mapper>
